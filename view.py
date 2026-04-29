@@ -75,3 +75,40 @@ class ConsoleView:
     def get_type_filter():
         print("Типы транзакций: deposit, withdraw, transfer")
         return ConsoleView.get_input("Введите тип транзакции: ")
+    
+    @staticmethod
+    def get_number_input(prompt, allow_zero=True):
+        """Безопасный ввод числа с обработкой ошибок"""
+        while True:
+            try:
+                value = input(prompt)
+                if not value.strip():
+                    if allow_zero:
+                        return 0
+                    else:
+                        print("❌ Поле не может быть пустым")
+                        continue
+                number = float(value)
+                if number < 0:
+                    print("❌ Число не может быть отрицательным")
+                    continue
+                return number
+            except ValueError:
+                print("❌ Ошибка: введите число (например, 100 или 100.50)")
+
+    @staticmethod
+    def get_positive_number_input(prompt):
+        """Ввод положительного числа"""
+        while True:
+            try:
+                value = input(prompt)
+                if not value.strip():
+                    print("❌ Поле не может быть пустым")
+                    continue
+                number = float(value)
+                if number <= 0:
+                    print("❌ Сумма должна быть больше 0")
+                    continue
+                return number
+            except ValueError:
+                print("❌ Ошибка: введите число")
