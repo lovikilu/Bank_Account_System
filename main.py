@@ -32,20 +32,20 @@ def main():
         
         elif choice == '3':  # Пополнить счет
             acc_num = view.get_input("Введите номер счета: ")
-            amount = float(view.get_input("Введите сумму пополнения: "))
+            amount = float(view.get_positive_number_input("Введите сумму пополнения: "))
             success, message = controller.deposit(acc_num, amount)
             view.show_message(message, not success)
         
         elif choice == '4':  # Снять деньги
             acc_num = view.get_input("Введите номер счета: ")
-            amount = float(view.get_input("Введите сумму снятия: "))
+            amount = float(view.get_positive_number_input("Введите сумму снятия: "))
             success, message = controller.withdraw(acc_num, amount)
             view.show_message(message, not success)
         
         elif choice == '5':  # Перевести деньги
             from_acc = view.get_input("Введите номер счета отправителя: ")
             to_acc = view.get_input("Введите номер счета получателя: ")
-            amount = float(view.get_input("Введите сумму перевода: "))
+            amount = float(view.get_positive_number_input("Введите сумму перевода: "))
             success, message = controller.transfer(from_acc, to_acc, amount)
             view.show_message(message, not success)
         
