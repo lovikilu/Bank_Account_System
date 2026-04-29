@@ -34,7 +34,7 @@ class Account:
         account_type = data.get('type')
         if account_type == 'CheckingAccount':
             return CheckingAccount(data['account_number'], data['owner_name'], data['balance'])
-        elif account_type == 'SavingAccount':
+        elif account_type == 'SavingsAccount':
             return SavingsAccount(data['account_number'], data['owner_name'], data['balance'])
         elif account_type == 'CreditAccount':
             return CreditAccount(data['account_number'], data['owner_name'], data['balance'])
@@ -127,3 +127,7 @@ class TransactionHistoryQueue:
         self.queue.clear()
         for t_data in transaction_data:
             self.queue.append(Transaction.from_dict(t_data))
+
+    def to_list_dict(self):
+        """Преобразует очередь транзакций в список словарей для JSON"""
+        return [t.to_dict() for t in self.queue]
